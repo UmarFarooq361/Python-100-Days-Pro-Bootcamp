@@ -12,6 +12,3 @@ if num>=120:
 
 else:
     print("Your are not allowed to ride")
-
-
-
