@@ -1,7 +1,7 @@
 print("Welcome to Pizza Order.")
 size= (input("What is the size of your pizza ? S , M , L ?"))
-add_pepperoni= (input("Do you wont to add extra pepperoni ? Y , N ?"))
-extra_cheez= (input("Do you wont to add extra cheez ? Y , N ?"))
+add_pepperoni= (input("Do you want to add extra pepperoni ? Y , N ?"))
+extra_cheez= (input("Do you want to add extra cheez ? Y , N ?"))
 bill = 0
 
 if (size=="S"):
