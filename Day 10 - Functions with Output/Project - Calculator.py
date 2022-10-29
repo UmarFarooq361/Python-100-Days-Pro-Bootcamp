@@ -1,5 +1,3 @@
-from calculator_art import logo
-
 def add(num1 , num2):
     return num1 + num2
 def subtract(num1 , num2):
@@ -16,7 +14,6 @@ operations = {
     "/" : devide
 }
 def calculator():
-    print(logo)
     should_continue = True
     num1 = float(input("Enter first number : "))
     for key in operations:
