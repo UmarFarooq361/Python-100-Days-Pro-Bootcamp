@@ -4,9 +4,9 @@ BMI = weight/height** 2
 BMI = round(BMI,2)
 
 if BMI < 18.5:
-    print(f"You BMI is {BMI} ,  and you are underweight .")
+    print(f"You BMI is {BMI} , and you are underweight .")
 elif BMI < 25:
-    print(f"You BMI is {BMI} ,  and you have normal weight .")
+    print(f"You BMI is {BMI} , and you have normal weight .")
 elif BMI < 30:
     print(f"You BMI is {BMI} ,  and you are overweight .")
 elif BMI < 35:
