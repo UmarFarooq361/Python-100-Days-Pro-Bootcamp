@@ -19,6 +19,7 @@ print('''
 
 
 ''')
+
 print("Welcome to the Treasure Island.")
 print("Your mission is to find treasure .")
 choice1 = input('you\'re at across the road . where do you want to go? "Left" or "Right" ? ').lower()
