@@ -7,15 +7,15 @@ combined_name = combined_name.lower()
 true_count = 0
 love_count = 0
 
+true_count += combined_name.count("t")
 true_count += combined_name.count("r")
 true_count += combined_name.count("u")
-true_count += combined_name.count("t")
 true_count += combined_name.count("e")
 
-love_count += combined_name.count("l")
-love_count += combined_name.count("o")
-love_count += combined_name.count("v")
-love_count += combined_name.count("e")
+love_count +=  combined_name.count("l")
+love_count +=  combined_name.count("o")
+love_count +=  combined_name.count("v")
+love_count +=  combined_name.count("e")
 
 score = str(true_count)+str(love_count)
 score = int(score)
