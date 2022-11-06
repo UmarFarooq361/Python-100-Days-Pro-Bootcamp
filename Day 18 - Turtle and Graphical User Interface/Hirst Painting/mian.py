@@ -11,7 +11,6 @@ color_list = [(202, 164, 110), (136, 239, 243), (149, 75, 50), (22, 201, 136), (
 
 tim.penup()
 tim.hideturtle()
-
 tim.setheading(230)
 tim.forward(330)
 tim.setheading(0)
