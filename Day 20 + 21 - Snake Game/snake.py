@@ -1,5 +1,6 @@
 from turtle import Turtle , Screen
 MOVE = 20
+STARTING_POSITIONS = [(0, 0), (-20, 0), (-40, 0)]
 UP = 90
 DOWN = 270
 LEFT = 180
@@ -7,20 +8,30 @@ RIGHT = 0
 class Snake:
 
     def __init__(self):
-        self.x = 0
-        self.y = 0
         self.snake_list = []
         self.create_snake()
         self.head = self.snake_list[0]
 
     def create_snake(self):
-        for _ in range(0, 3):
-            python = Turtle("square")
-            python.penup()
-            python.color("white")
-            python.goto(self.x, self.y)
-            self.snake_list.append(python)
-            self.x -= 20
+        python = Turtle("triangle")
+        python.penup()
+        python.shapesize(stretch_len=1.2 , stretch_wid=1.2)
+        python.color("white")
+        self.snake_list.append(python)
+        for position in STARTING_POSITIONS:
+            self.add_segment(position)
+
+    def add_segment(self,position):
+        python = Turtle("square")
+        python.penup()
+        python.color("white")
+        python.speed("fastest")
+        python.goto(position)
+        self.snake_list.append(python)
+
+    def extend(self):
+        self.add_segment(self.snake_list[-1].position())
+
     def move(self):
         for py in range(len(self.snake_list) - 1, 0, -1):
             new_x = self.snake_list[py - 1].xcor()
