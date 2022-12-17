@@ -15,10 +15,12 @@ while len(guessList)<50:
     answer = turtle.textinput(title=f"{len(guessList)}/50 States Corrert", prompt="Enter name of U.S states")
     title_answer = answer.title()
     if title_answer == "Exit":
-        missingStates = []
-        for state in listOfStates:
-            if state not in guessList:
-                missingStates.append(state)
+        missingStates = [state for state in listOfStates if state not in guessList]
+        # this code is without the concept of comprehension
+        # missingStates = []
+        # for state in listOfStates:
+        #     if state not in guessList:
+        #         missingStates.append(state)
         missing_data = pandas.DataFrame(missingStates)
         missing_data.to_csv("StatesToLearn2.csv")
         break;
