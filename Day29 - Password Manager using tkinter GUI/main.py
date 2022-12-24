@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 window = Tk()
 from random import choice, randint, shuffle
+import json
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
@@ -28,20 +29,53 @@ def save():
     website_name = website_input.get()
     my_username = username_input.get()
     my_password = password_input.get()
-    file_name = 'data.txt'
+    new_data = {
+        website_name:{
+            "email": my_username,
+            "password": my_password
+        }
+    }
     if len(website_name)== 0 or len(my_username) == 0 or len(my_password) == 0:
         messagebox.showwarning(title="Emply Fields", message="You cant left any field emply.")
     else:
-        is_ok = messagebox.askokcancel(title=website_name , message=f"Your details are:\nUsername/Email: {my_username}"
-                                                                    f"\nPassword: {my_password}")
-        if is_ok:
-            with open(file_name, 'a') as f:
-                f.write(f"{website_name} | {my_username} | {my_password}\n")
+        try:
+            with open("data.json", 'r') as data_file:
+                data = json.load(data_file)
+        except FileNotFoundError:
+            with open("data.json", 'w') as data_file:
+                json.dump(new_data , data_file , indent=4)
+        else:
+            data.update(new_data)
+            with open("data.json", 'w') as data_file:
+                json.dump(data , data_file , indent=4)
+        finally:
             website_input.delete(0, END)
             username_input.delete(0, END)
             password_input.delete(0, END)
 
+def find_password():
+    website_name = website_input.get()
+    if len(website_name)== 0 :
+        messagebox.showwarning(title="Emply Fields", message="Type website name to find its password.")
+    else:
+        try:
+            with open("data.json", 'r') as data_file:
+                data = json.load(data_file)
+                if website_name in data:
+                    email = data[website_name]["email"]
+                    password = data[website_name]["password"]
+                else:
+                    messagebox.showwarning(title="Error", message=f"No details for the {website_name} found.")
 
+
+        except FileNotFoundError:
+            messagebox.showwarning(title="Error", message="No data file exists.")
+
+        else:
+            messagebox.showinfo(title=website_name, message=f"Email: {email}\n Password: {password}")
+
+        finally:
+            website_input.delete(0, END)
 
 # ---------------------------- UI SETUP ------------------------------- #
 window.title("Password Manager")
@@ -54,9 +88,11 @@ canvas.grid(column=1, row=0)
 
 website = Label(text= "Website", font= ("Ubuntu", 15))
 website.grid(column=0, row=1)
-website_input = Entry(width= 35 ,font= ("Ubunto", 15))
+website_input = Entry(width= 20 ,font= ("Ubunto", 15))
 website_input.focus()
-website_input.grid(row=1 , column=1, columnspan=2)
+website_input.grid(row=1 , column=1)
+search_btn = Button(text= "Search" ,font= ("Ubuntu", 13),width=16, command= find_password )
+search_btn.grid(column=2, row=1)
 
 user_name = Label(text= "UserName/Email", font= ("Ubunto", 15))
 user_name.grid(column=0, row=2)
