@@ -59,7 +59,7 @@ while True:
         # Add another 5 seconds until the next check
         timeout = time.time() + 5
 
-    # After 5 minutes stop the bot and check the cookies per second count.
+    # After 5 minutes stop  the bot and check the cookies per second count.
     if time.time() > five_min:
         cookie_per_s = driver.find_element(By.ID,"cps").text
         print(cookie_per_s)
